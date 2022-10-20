@@ -29,4 +29,17 @@ public class MiUAM {
        
     }
     
+    public void llenarUsuaios(){
+        
+         Usuario usuarios = new Usuario();
+       usuarios.agregar("19014616", "1234", "Megan", "Bougle", "Meg.pockets@gmail.com");
+        usuarios.agregar("1901717", "12345", "Silvio", "Vigil", "Silverpockets@gmail.com");
+        
+        Login login = new Login();
+        login.usuarios = usuarios;
+        login.setVisible(true);
+        
+    }
+                            
+    
 }
