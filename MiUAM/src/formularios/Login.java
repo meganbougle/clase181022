@@ -173,8 +173,9 @@ public class Login extends javax.swing.JFrame {
        if( usuarios.autenticarUsuario(user,pw)){
            //JOptionPane.showMessageDialog(this, "Ok");
            Menu mnu = new Menu();
+           mnu.setLista(usuarios);
            mnu.setVisible(true);
-           this.setVisible(false);
+           //this.setVisible(false);
            dispose();
        } else{
            JOptionPane.showMessageDialog(this, "Incorrecto");
