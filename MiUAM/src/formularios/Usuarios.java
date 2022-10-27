@@ -19,8 +19,16 @@ public class Usuarios extends javax.swing.JInternalFrame {
      */
     public Usuarios() {
         initComponents();
-        jTblRegistros.setModel(generarTabla());
+        
     }
+    
+    public Usuarios(dao.Usuario user)
+    {
+        initComponents();
+        this.lista = user;
+       jTblRegistros.setModel(generarTabla());
+    }      
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,10 +141,16 @@ public class Usuarios extends javax.swing.JInternalFrame {
         jBtnSave.setFocusable(false);
         jBtnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSaveActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnSave);
 
         jBtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formularios/img/Editar.png"))); // NOI18N
         jBtnEdit.setToolTipText("Editar");
+        jBtnEdit.setEnabled(false);
         jBtnEdit.setFocusable(false);
         jBtnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -144,6 +158,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
 
         jBtnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formularios/img/Limpiar.png"))); // NOI18N
         jBtnClean.setToolTipText("Limpiar");
+        jBtnClean.setEnabled(false);
         jBtnClean.setFocusable(false);
         jBtnClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -194,14 +209,32 @@ public class Usuarios extends javax.swing.JInternalFrame {
     private void jBtnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNewActionPerformed
         // TODO add your handling code here:
         limpiar();
+        jBtnSave.setEnabled(true);
+        jBtnClean.setEnabled(false);
+        jBtnEdit.setEnabled(false);
+        
        
     }//GEN-LAST:event_jBtnNewActionPerformed
+
+    private void jBtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveActionPerformed
+        // TODO add your handling code here:
+        String id = jTfUserName.getText();
+        String pw = String.valueOf(jPwContraU.getPassword());
+        String nom = jTfNomU.getText();
+        String ape = jTfApeU.getText();
+        String ema = jTfCorreoU.getText();
+        lista.agregar(ape, pw, nom, ape, ema);
+        limpiar();
+        
+    }//GEN-LAST:event_jBtnSaveActionPerformed
     private void limpiar(){
         jTfUserName.setText("");
         jPwContraU.setText("");
         jTfNomU.setText("");
         jTfApeU.setText("");
         jTfCorreoU.setText("");
+        jTblRegistros.setModel(generarTabla());
+        jTfUserName.requestFocus();
     }
     /**
      * @param args the command line arguments

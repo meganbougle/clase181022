@@ -37,6 +37,7 @@ public class MiUAM {
         
         Login login = new Login();
         login.usuarios = usuarios;
+        System.out.println("En main");
         login.setVisible(true);
         
     }
