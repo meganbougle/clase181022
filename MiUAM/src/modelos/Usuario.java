@@ -4,6 +4,8 @@
  */
 package modelos;
 
+import java.util.Objects;
+
 /**
  *
  * @author labc205
@@ -68,5 +70,9 @@ public class Usuario {
    
    public boolean verificarUser(String user, String pw){
        return this.userName.equals(user)&& this.pw.equals(pw);
+   }
+
+   public boolean existe(String user){
+       return this.userName.equals(user);
    }
 }
